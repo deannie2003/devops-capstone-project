@@ -110,7 +110,7 @@ class Account(db.Model, PersistentBase):
 
     def deserialize(self, data):
         """
-        Deserializes a Account from a dictionary
+        Deserializes an Account from a dictionary
 
         Args:
             data (dict): A dictionary containing the resource data
@@ -119,7 +119,7 @@ class Account(db.Model, PersistentBase):
             self.name = data["name"]
             self.email = data["email"]
             self.address = data["address"]
-            self.phone_number = data.get("phone_number")
+            self.phone_number = data.get("phone_number", "")
             date_joined = data.get("date_joined")
             if date_joined:
                 self.date_joined = date.fromisoformat(date_joined)
@@ -130,9 +130,11 @@ class Account(db.Model, PersistentBase):
         except TypeError as error:
             raise DataValidationError(
                 "Invalid Account: body of request contained "
-                "bad or no data - " + error.args[0]
+                "bad or no data - " + str(error)
             ) from error
         return self
+
+
 
     @classmethod
     def find_by_name(cls, name):
