@@ -10,6 +10,7 @@ from service.models import Account
 from service.common import status  # HTTP Status Codes
 from service.exceptions import DataValidationError
 from . import app  # Import Flask application
+from service.exceptions import DataValidationError
 
 
 ############################################################
@@ -131,7 +132,6 @@ def delete_account(account_id):
     if not account:
         # Return No Content if not found, do nothing
         return "", status.HTTP_204_NO_CONTENT
-    
     account.delete()
     return "", status.HTTP_204_NO_CONTENT
 

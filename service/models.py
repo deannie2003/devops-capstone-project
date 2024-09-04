@@ -134,8 +134,6 @@ class Account(db.Model, PersistentBase):
             ) from error
         return self
 
-
-
     @classmethod
     def find_by_name(cls, name):
         """Returns all Accounts with the given name
