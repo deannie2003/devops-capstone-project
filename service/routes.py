@@ -10,7 +10,6 @@ from service.models import Account
 from service.common import status  # HTTP Status Codes
 from service.exceptions import DataValidationError
 from . import app  # Import Flask application
-from service.exceptions import DataValidationError
 
 
 ############################################################
